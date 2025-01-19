@@ -17,7 +17,7 @@ public struct ChatQuery: Equatable, Codable, Streamable {
     /// https://platform.openai.com/docs/models/model-endpoint-compatibility
     public let model: Model
     /// Developer-defined tags and values used for filtering completions in the dashboard.
-    public let metadata: [String:String]?  // FIXME: make this customizable
+    public let metadata: AnyCodable?  // FIXME: make this customizable
     /// Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
     /// Defaults to 0
     /// https://platform.openai.com/docs/guides/text-generation/parameter-details
@@ -73,7 +73,7 @@ public struct ChatQuery: Equatable, Codable, Streamable {
     public init(
         messages: [Self.ChatCompletionMessageParam],
         model: Model,
-        metadata: [String:String]? = nil,
+        metadata: AnyCodable? = nil,
         frequencyPenalty: Double? = nil,
         logitBias: [String : Int]? = nil,
         logprobs: Bool? = nil,
